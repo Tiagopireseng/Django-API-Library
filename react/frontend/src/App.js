@@ -21,7 +21,7 @@ function App() {
     };
 
     useEffect(() => {
-        axios.get("/api/books/").then((result) => {
+        axios.get("http://localhost:8000/api/books/").then((result) => {
             setBooks(result.data);
             console.table(result.data);
         });
@@ -29,7 +29,7 @@ function App() {
 
     const refreshList = () => {
         axios
-            .get("/api/books/")
+            .get("http://localhost:8000/api/books/")
             .then((res) => {
                 setBooks(res.data);
                 console.log(res.data);

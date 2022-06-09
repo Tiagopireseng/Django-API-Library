@@ -38,7 +38,7 @@ const TodoList = ({ books, todos, onUpdateTodo, refreshList }) => {
         setActiveItem(item);
         setModal((modal) => !modal);
         axios
-            .get("/api/books/")
+            .get("http://localhost:8000/api/books/")
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
     };
@@ -63,19 +63,21 @@ const TodoList = ({ books, todos, onUpdateTodo, refreshList }) => {
 
         if (item.id) {
             axios
-                .put(`/api/books/${item.id}/`, item)
+                .put(`http://localhost:8000/api/books/${item.id}/`, item)
                 .then((res) => refreshList());
             return;
         }
         console.log(item);
-        axios.post("/api/books/", item).then((res) => {
+        axios.post("http://localhost:8000/api/books/", item).then((res) => {
             refreshList();
         });
 
         alert("save" + JSON.stringify(item));
     };
     const handleDelete = (item) => {
-        axios.delete(`/api/books/${item.id}/`).then((res) => refreshList());
+        axios
+            .delete(`http://localhost:8000/api/books/${item.id}/`)
+            .then((res) => refreshList());
     };
 
     return (
